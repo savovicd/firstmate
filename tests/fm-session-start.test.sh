@@ -604,13 +604,16 @@ EOF
   printf '# Firstmate\n' > "$mate/AGENTS.md"
   printf 'Second mate charter.\n' > "$mate/data/charter.md"
   printf '%s\n' herdr > "$home/config/backend"
-  printf '%s\n' pi > "$home/config/secondmate-harness"
+  # This fixture owns the established interactive Herdr husk-recovery path.
+  # Exact plain Pi now uses protocol-20 structural launch and has its own end-to-end coverage.
+  # Pi-signed deliberately remains interactive.
+  printf '%s\n' pi-signed > "$home/config/secondmate-harness"
   printf '%s\n' manual > "$home/config/backlog-backend"
   touch "$home/state/.last-watcher-beat"
   {
     printf 'window=default:p-old\n'
     printf 'kind=secondmate\n'
-    printf 'harness=pi\n'
+    printf 'harness=pi-signed\n'
     printf 'home=%s\n' "$mate"
     printf 'backend=herdr\n'
     printf 'herdr_session=default\n'
@@ -621,7 +624,7 @@ EOF
   ln -s "$ROOT/bin" "$root/bin"
   make_fake_toolchain "$fakebin"
   make_fake_ps_claude "$fakebin"
-  fm_fake_exit0 "$fakebin" pi
+  fm_fake_exit0 "$fakebin" pi-signed
   make_fake_herdr_secondmate_recovery "$fakebin"
   : > "$log"
   printf '%s|%s|%s|%s|%s|%s\n' "$root" "$home" "$fakebin" "$mate" "$log" "$state"
